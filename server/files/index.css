@@ -1,0 +1,44 @@
+@import url(layout.css);
+
+body {
+  background-image: url('images/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+article {
+  background-color: rgba(211, 211, 211, 0.9);
+  border-radius: 16px;
+  padding: 16px;
+  width: 384px;
+  margin: 8px;
+}
+
+article button {
+  margin: 0px 2px;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+span {
+  margin-right: 4px;
+}
+
+.genre {
+  padding: 4px 8px;
+  border: solid black 1px;
+  border-radius: 6px;
+  background-color: darkgray;
+  font-weight: bold;
+}
