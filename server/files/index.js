@@ -89,6 +89,8 @@ function addMovie(imdbID) {
       if (response.status === 201) {
         // Task 2.2: Make sure to remove the added movie from the search results to avoid
         // giving the user the option to add it again.
+        const item = document.querySelector(`[data-imdb-i-d="${imdbID}"]`);
+        if (item) item.remove();
     
         loadMovies();
         updateGenres();
@@ -136,6 +138,17 @@ function searchMovies(query) {
       // Task 2.2: Render the results returned from the server. Make sure to
       // include an "Add" button for each result that calls `addMovie(imdbID)` when clicked.
       // There is a second part to this task, in `addMovie`
+      if (results.length === 0) {
+        new ElementBuilder("p").text(messages.noResultsFound).appendTo(resultsDiv);
+      } else {
+        results.forEach(movie => {
+          new ElementBuilder("p")
+            .id(movie.imdbID)
+            .append(new ElementBuilder("span").text(`${movie.Title} (${movie.Year})`))
+            .append(new ButtonBuilder("Add").onclick(() => addMovie(movie.imdbID)))
+            .appendTo(resultsDiv);
+        });
+      }
 
     })
     .catch(error => {
@@ -168,6 +181,16 @@ window.onload = function () {
       // Task 1.2: Render a user greeting to `#userGreeting` 
       // using `firstName`, `lastName`, and the server-provided
       // login timestamp.
+      const loginDate = new Date(currentSession.loginTime);
+      const dateStr = loginDate.toLocaleDateString('de-AT', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      });
+      const timeStr = loginDate.toLocaleTimeString('de-AT', {
+        hour: '2-digit', minute: '2-digit'
+      });
+      greetingElement.textContent =
+        `Hi ${currentSession.firstName} ${currentSession.lastName}, ` +
+        `du hast dich am ${dateStr} um ${timeStr} angemeldet.`;
     } else {
       greetingElement.textContent = messages.loggedOutGreeting;
     }
@@ -215,6 +238,27 @@ window.onload = function () {
     // Task 1.1: Implement the login submit flow to call `POST /login` 
     // with username and password, handle errors, save the response 
     // into `currentSession`, then call `updateUI()` and `loadMovies()`.
+    fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: formData.get('username'),
+        password: formData.get('password')
+      })
+    })
+      .then(response => {
+        if (!response.ok) throw new Error(messages.loginFailed);
+        return response.json();
+      })
+      .then(data => {
+        currentSession = data;
+        document.getElementById('loginDialog').close();
+        updateUI();
+        loadMovies();
+      })
+      .catch(error => {
+        alert(error.message);
+      });
 
   });
 

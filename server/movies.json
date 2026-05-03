@@ -79,6 +79,33 @@
       "Poster": "https://m.media-amazon.com/images/M/MV5BY2RiOTM0ZDgtNDRlMi00MDMzLWI1NDYtY2NjZDM4YTkwNWVlXkEyXkFqcGc@._V1_SX300.jpg",
       "Metascore": 67,
       "imdbRating": 6.9
+    },
+    "tt0102798": {
+      "imdbID": "tt0102798",
+      "Title": "Robin Hood: Prince of Thieves",
+      "Released": "14 Jun 1991",
+      "Runtime": 143,
+      "Genres": [
+        "Action",
+        "Adventure",
+        "Drama"
+      ],
+      "Directors": [
+        "Kevin Reynolds"
+      ],
+      "Writers": [
+        "Pen Densham",
+        "John Watson"
+      ],
+      "Actors": [
+        "Kevin Costner",
+        "Morgan Freeman",
+        "Mary Elizabeth Mastrantonio"
+      ],
+      "Plot": "Robin Hood decides to fight back as an outlaw when faced with the tyranny of the Sheriff of Nottingham.",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNTUyMjA5NDktNWY5Ny00ZWU4LWE4Y2ItMDYzZTk0NzU3ZWMyXkEyXkFqcGc@._V1_SX300.jpg",
+      "Metascore": 51,
+      "imdbRating": 6.9
     }
   },
   "jane": {
